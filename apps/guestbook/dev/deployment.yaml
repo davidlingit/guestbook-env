@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guestbook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: guestbook
+  template:
+    metadata:
+      labels:
+        app: guestbook
+        app.kubernetes.io/part-of: guestbook
+    spec:
+      containers:
+        - name: guestbook
+          image: ghcr.io/harborline/guestbook:dev
+          ports:
+            - containerPort: 80
